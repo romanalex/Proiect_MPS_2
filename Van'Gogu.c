@@ -1,4 +1,17 @@
-#include<stdio.h>
+#include <stdio.h>
+
+struct Point {
+   double xval;
+   double yval;
+};
+
+struct Point translate(struct Point p, double x, double y)
+{
+    p.xval += x;
+    p.yval += y;
+
+    return p;
+}
 
 int main() {
 
