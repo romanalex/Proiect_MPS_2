@@ -1,7 +1,5 @@
-#include <iostream>
+#include <stdio.h>
 #include <math.h>
-
-using namespace std;
 
 // Class to represent points.
 class Point {
@@ -22,11 +20,31 @@ public:
                 return sqrt(xd*xd + yd*yd);
         }
 
+        // Translate function
         void translate(double a, double b)
         {
                 xval += a;
                 yval += b;
         }
+
+        // Rotate function
+        void rotate(Point p, float angle)
+		{
+		  float s = sin(angle);
+		  float c = cos(angle);
+
+		  // translate point back to origin:
+		  xval -= p.xval;
+		  yval -= p.yval;
+
+		  // rotate point
+		  float xnew = xval * c - yval * s;
+		  float ynew = xval * s + yval * c;
+
+		  // translate point back:
+		  xval = xnew + p.xval;
+		  yval = ynew + p.yval;
+		}
 
         // Print the point on the stream.  The class ostream is a base class
         // for output streams of various types.
