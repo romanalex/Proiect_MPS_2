@@ -14,6 +14,20 @@ public:
                 xval = x;
                 yval = y;
         }
+
+        // Distance to another point.  Pythagorean thm.
+        double dist(Point other) {
+                double xd = xval - other.xval;
+                double yd = yval - other.yval;
+                return sqrt(xd*xd + yd*yd);
+        }
+
+        void translate(double a, double b)
+        {
+                xval += a;
+                yval += b;
+        }
+
         // Print the point on the stream.  The class ostream is a base class
         // for output streams of various types.
         void print(ostream &strm)
