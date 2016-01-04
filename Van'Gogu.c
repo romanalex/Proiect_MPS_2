@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 struct Point {
    double xval;
@@ -13,6 +14,25 @@ struct Point translate(struct Point p, double x, double y)
     return p;
 }
 
+struct Point rotate(struct Point p, struct Point p1, float angle)
+{
+	float s = sin(angle);
+	float c = cos(angle);
+
+	// translate point back to origin:
+	p.xval -= p1.xval;
+	p.yval -= p1.yval;
+
+	// rotate point
+	float xnew = p.xval * c - p.yval * s;
+	float ynew = p.xval * s + p.yval * c;
+
+	// translate point back:
+	p.xval = xnew + p1.xval;
+	p.yval = ynew + p1.xval;
+	return p;
+}
+
 int main() {
 
 	FILE *f = fopen("date.in", "r");
@@ -23,5 +43,7 @@ int main() {
 
 	fprintf(g, "%d\n", d);
 
+	struct Point p;
+    
 	return 0;
 }
